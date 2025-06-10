@@ -4,7 +4,6 @@ import Stores from "../src/assets/Stores";
 import Menu from "../src/assets/Menu";
 import Cart from "../src/assets/Cart";
 import { Routes, Route } from "react-router-dom";
-
 export default function App() {
   return (
     <Routes>
