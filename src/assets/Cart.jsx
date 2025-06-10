@@ -3,6 +3,8 @@ import "../assets/Cart.css";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
+  const [OrderId, setorderId] = useState("");
+
   // Helper to group cart items
   const getGroupedCart = () => {
     const store = JSON.parse(localStorage.getItem("cart")) || [];
@@ -54,17 +56,23 @@ export default function Cart() {
   );
 
   if (cartItems.length === 0) {
-    return<> <h1 className="empty">Cart is Empty : Shop Now </h1> 
-              <p><Link to="/">Go To Shop</Link></p></>
+    return (
+      <>
+        {" "}
+        <h1 className="empty">Cart is Empty : Shop Now </h1>
+        <p>
+          <Link to="/">Go To Shop</Link>
+        </p>
+      </>
+    );
   }
+
   const handleclick = () => {
-    const OrderId =
+    setorderId(
       "ORD-" +
-      Math.random().toString(36).substr(2, 5).toUpperCase() +
-      "-" +
-      Date.now();
-    alert(
-      `Your Order is Placed Successfully :) \nyour Order ID Number Is : ${OrderId}`
+        Math.random().toString(36).substr(2, 5).toUpperCase() +
+        "-" +
+        Date.now()
     );
   };
   return (
@@ -115,6 +123,14 @@ export default function Cart() {
         <button className="order-btn" onClick={handleclick}>
           Order
         </button>
+        {OrderId && (
+          <div
+            className="order-id"
+            style={{ marginTop: "1rem", fontSize: "3rem", color: "black" }}
+          >
+            Order ID: {OrderId}
+          </div>
+        )}
       </div>
     </>
   );
